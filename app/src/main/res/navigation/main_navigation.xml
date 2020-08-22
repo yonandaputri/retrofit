@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/artistFragment">
+
+    <action android:id="@+id/action_to_artistFragment"
+        app:destination="@+id/artistFragment"/>
+    <action android:id="@+id/action_to_createArtisFragment"
+        app:destination="@+id/createArtistFragment"/>
+
+    <fragment
+        android:id="@+id/artistFragment"
+        android:name="com.example.exercise_retrofit.ArtistFragment"
+        android:label="fragment_artist"
+        tools:layout="@layout/fragment_artist" />
+    <fragment
+        android:id="@+id/createArtistFragment"
+        android:name="com.example.exercise_retrofit.CreateArtistFragment"
+        android:label="fragment_create_artist"
+        tools:layout="@layout/fragment_create_artist" />
+</navigation>
