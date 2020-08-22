@@ -11,7 +11,7 @@ interface ArtistAPI {
     @GET("artist/{id}")
     fun getArtistByID(@Path("id") id: String): Call<Artist>
 
-    // karena dapet responnya artist lagi
+    // karena dapet responnya artist lagi maka call artist
     @POST("artist")
     fun createArtist(@Body artist: Artist): Call<Artist>
 }
