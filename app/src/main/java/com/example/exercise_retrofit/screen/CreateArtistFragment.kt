@@ -1,4 +1,4 @@
-package com.example.exercise_retrofit
+package com.example.exercise_retrofit.screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.example.exercise_retrofit.AppContainer
+import com.example.exercise_retrofit.MyApplication
+import com.example.exercise_retrofit.R
 import com.example.exercise_retrofit.artist.Artist
 import com.example.exercise_retrofit.artist.ArtistViewModel
 import kotlinx.android.synthetic.main.fragment_create_artist.*
@@ -17,10 +20,12 @@ import kotlinx.android.synthetic.main.fragment_create_artist.*
  */
 class CreateArtistFragment : Fragment(), View.OnClickListener {
 
-    val artistViewModel by activityViewModels<ArtistViewModel>()
+    lateinit var appContainer: AppContainer
+    //val artistViewModel by activityViewModels<ArtistViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        appContainer = (activity?.application as MyApplication).appContainer
     }
 
     override fun onCreateView(
@@ -44,7 +49,7 @@ class CreateArtistFragment : Fragment(), View.OnClickListener {
                     bornPlace = artistBornPlaceInputText.text.toString(),
                     debut = artistDebutInputText.text.toString()
                 )
-                artistViewModel.saveArtist(artist)
+                appContainer.artistViewModel.saveArtist(artist)
             }
         }
     }

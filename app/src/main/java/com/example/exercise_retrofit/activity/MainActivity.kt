@@ -1,27 +1,34 @@
-package com.example.exercise_retrofit
+package com.example.exercise_retrofit.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import com.example.exercise_retrofit.artist.ArtistViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.exercise_retrofit.AppContainer
+import com.example.exercise_retrofit.MyApplication
+import com.example.exercise_retrofit.R
+import com.example.exercise_retrofit.artist.ArtistAPI
+import com.example.exercise_retrofit.artist.ArtistRepository
+import com.example.exercise_retrofit.config.RetrofitBuilder
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var navController: NavController
+    lateinit var appContainer: AppContainer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        navController = (nav_host_fragment_container as NavHostFragment).navController
+        // manggil di activity cuma application
+        //val appContainer = (application as MyApplication).appContainer
+        //appContainer.artistViewModel
 
+        navController = (nav_host_fragment_container as NavHostFragment).navController
         NavigationUI.setupWithNavController(bottom_navigation, navController)
 
         bottom_navigation.setOnNavigationItemSelectedListener { item ->

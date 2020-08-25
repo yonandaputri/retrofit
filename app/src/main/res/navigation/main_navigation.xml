@@ -12,12 +12,12 @@
 
     <fragment
         android:id="@+id/artistFragment"
-        android:name="com.example.exercise_retrofit.ArtistFragment"
+        android:name="com.example.exercise_retrofit.screen.ArtistFragment"
         android:label="fragment_artist"
         tools:layout="@layout/fragment_artist" />
     <fragment
         android:id="@+id/createArtistFragment"
-        android:name="com.example.exercise_retrofit.CreateArtistFragment"
+        android:name="com.example.exercise_retrofit.screen.CreateArtistFragment"
         android:label="fragment_create_artist"
         tools:layout="@layout/fragment_create_artist" />
 </navigation>
