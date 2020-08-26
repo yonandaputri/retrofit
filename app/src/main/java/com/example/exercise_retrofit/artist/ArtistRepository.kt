@@ -4,8 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class ArtistRepository(val artistAPI: ArtistAPI) {
+// Inject dilakukan oleh dagger dan akan dibuat object juga
+class ArtistRepository @Inject constructor(val artistAPI: ArtistAPI) {
     var artist: MutableLiveData<Artist> = MutableLiveData<Artist>()
 
     fun getArtist(id: String) {
@@ -22,8 +24,9 @@ class ArtistRepository(val artistAPI: ArtistAPI) {
             override fun onResponse(call: Call<Artist>, response: Response<Artist>) {
                 if (response.code() == 200) {
                     artist.value = response.body()
+                } else {
+                    println("GAGAL ${response.code()}")
                 }
-                println("GAGAL ${response.code()}")
             }
         })
     }

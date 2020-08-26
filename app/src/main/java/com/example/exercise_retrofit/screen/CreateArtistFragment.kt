@@ -12,6 +12,7 @@ import com.example.exercise_retrofit.R
 import com.example.exercise_retrofit.artist.Artist
 import com.example.exercise_retrofit.artist.ArtistViewModel
 import kotlinx.android.synthetic.main.fragment_create_artist.*
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
@@ -20,12 +21,14 @@ import kotlinx.android.synthetic.main.fragment_create_artist.*
  */
 class CreateArtistFragment : Fragment(), View.OnClickListener {
 
+    @Inject lateinit var artistViewModel: ArtistViewModel
+
     lateinit var appContainer: AppContainer
     //val artistViewModel by activityViewModels<ArtistViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        appContainer = (activity?.application as MyApplication).appContainer
+        (activity?.applicationContext as MyApplication).applicationComponent.inject(this)
     }
 
     override fun onCreateView(
@@ -49,7 +52,7 @@ class CreateArtistFragment : Fragment(), View.OnClickListener {
                     bornPlace = artistBornPlaceInputText.text.toString(),
                     debut = artistDebutInputText.text.toString()
                 )
-                appContainer.artistViewModel.saveArtist(artist)
+                artistViewModel.saveArtist(artist)
             }
         }
     }

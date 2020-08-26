@@ -14,16 +14,19 @@ import com.example.exercise_retrofit.R
 import com.example.exercise_retrofit.artist.ArtistAPI
 import com.example.exercise_retrofit.artist.ArtistRepository
 import com.example.exercise_retrofit.config.RetrofitBuilder
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var navController: NavController
-    lateinit var appContainer: AppContainer
+    //lateinit var appContainer: AppContainer
+    @Inject lateinit var artistViewModel: ArtistViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        (applicationContext as MyApplication).applicationComponent.inject(this)
         // manggil di activity cuma application
         //val appContainer = (application as MyApplication).appContainer
         //appContainer.artistViewModel

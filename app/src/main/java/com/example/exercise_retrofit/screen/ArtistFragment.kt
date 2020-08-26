@@ -13,6 +13,7 @@ import com.example.exercise_retrofit.MyApplication
 import com.example.exercise_retrofit.R
 import com.example.exercise_retrofit.artist.ArtistViewModel
 import kotlinx.android.synthetic.main.fragment_artist.*
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
@@ -20,6 +21,8 @@ import kotlinx.android.synthetic.main.fragment_artist.*
  * create an instance of this fragment.
  */
 class ArtistFragment : Fragment(), View.OnClickListener {
+
+    @Inject lateinit var artistViewModel: ArtistViewModel
 
     lateinit var appContainer: AppContainer
 
@@ -29,8 +32,9 @@ class ArtistFragment : Fragment(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        (activity?.applicationContext as MyApplication).applicationComponent.inject(this)
         // manggil di fragment pake activity.application
-        appContainer = (activity?.application as MyApplication).appContainer
+        //appContainer = (activity?.application as MyApplication).appContainer
     }
 
     override fun onCreateView(
@@ -43,14 +47,14 @@ class ArtistFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        appContainer.artistViewModel.artist.observe(viewLifecycleOwner, Observer {
+        artistViewModel.artist.observe(viewLifecycleOwner, Observer {
             artistNameText.text = it.name
         })
         fetchButton.setOnClickListener(this)
     }
 
     fun getArtist() {
-        appContainer.artistViewModel.getArtist(artistIdInputText.text.toString())
+        artistViewModel.getArtist(artistIdInputText.text.toString())
     }
 
     override fun onClick(v: View?) {

@@ -9,10 +9,11 @@ import com.example.exercise_retrofit.config.RetrofitBuilder
 // manual DI
 class AppContainer {
     // yang boleh artistViewModel
-    private val artistAPI: ArtistAPI = RetrofitBuilder.createRetrofit().create(ArtistAPI::class.java)
-    private val artistRepository: ArtistRepository = ArtistRepository(artistAPI)
+    // retrofit membuat class baru
+//    private val artistAPI: ArtistAPI = RetrofitBuilder.createRetrofit().create(ArtistAPI::class.java)
+//    private val artistRepository: ArtistRepository = ArtistRepository(artistAPI)
     //val artistViewModel: ArtistViewModelFactory = ArtistViewModelFactory(artistRepository)
-    val artistViewModel: ArtistViewModel = ArtistViewModel(artistRepository)
+    //val artistViewModel: ArtistViewModel = ArtistViewModel(artistRepository)
 }
 
 // direkomendasikan untuk class yang tidak dibuat berulang
